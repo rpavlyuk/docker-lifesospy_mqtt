@@ -3,7 +3,7 @@
 set -e
 
 VERSION="1.0"
-CONTAINER_NAME="docker.io/rpavlyuk/c7-lifesos_mqtt"
+CONTAINER_NAME="docker.io/rpavlyuk/c7-lifesospy_mqtt"
 
 # Run svarog to build the RPMs
 # svarog || { 

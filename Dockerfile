@@ -31,4 +31,13 @@ RUN pip3 install lifesospy_mqtt
 # Copy configs
 COPY ./src/ /
 
-CMD ["lifesospy_mqtt", "-l", "-p", "--configfile", "/lifesospy_mqtt/config.yaml", "--logfile", "/lifesospy_mqtt/log", "--pidfile", "/lifesospy_mqtt/pid"]
+# Install the service
+COPY ./src/lifesospy_mqtt/lifesospy_mqtt.service /usr/lib/systemd/system/lifesospy_mqtt.service
+
+# Enable the service
+RUN systemctl enable lifesospy_mqtt.service
+
+#CMD ["lifesospy_mqtt", "-l", "-p", "--configfile", "/lifesospy_mqtt/config.yaml", "--logfile", "/lifesospy_mqtt/log", "--pidfile", "/lifesospy_mqtt/pid"]
+
+### Kick it off
+CMD ["/usr/sbin/init"]

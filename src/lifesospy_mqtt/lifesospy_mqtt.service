@@ -1,0 +1,13 @@
+[Unit]
+Description=lifesospy_mqtt running as a service
+
+[Service]
+TimeoutStartSec=0
+Restart=on-failure
+RestartSec=5s
+Type=simple
+NotifyAccess=all
+ExecStart=/usr/local/bin/lifesospy_mqtt -l -p --configfile /lifesospy_mqtt/config.yaml --logfile /lifesospy_mqtt/log --pidfile /lifesospy_mqtt/pid
+
+[Install]
+WantedBy=multi-user.target

@@ -1,11 +1,11 @@
-container: docker.io/rpavlyuk/c7-lifesos_mqtt
+container: docker.io/rpavlyuk/c7-lifesospy_mqtt
 created: 2019-08-12 11:53:53.501852
 name: lifesospy_mqtt
 ports: {}
 volumes:
-#        /usr/share/lifesospy_mqtt:
-#                bind: /lifesospy_mqtt
-#                mode: rw
+        /usr/share/lifesospy_mqtt:
+                bind: /lifesospy_mqtt
+                mode: rw
         /etc/localtime:
                 bind: /etc/localtime
                 mode: ro
