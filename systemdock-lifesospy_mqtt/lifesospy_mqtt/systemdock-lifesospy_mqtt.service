@@ -1,0 +1,16 @@
+[Unit]
+Description=lifesospy_mqtt in Docker container running as a service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=no
+RestartSec=60s
+Type=simple
+NotifyAccess=all
+ExecStart=-/usr/bin/systemdock -v -a start -n lifesospy_mqtt
+ExecStop=/usr/bin/systemdock -v -a stop -n lifesospy_mqtt
+
+[Install]
+WantedBy=multi-user.target
