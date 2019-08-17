@@ -37,6 +37,12 @@ COPY ./src/lifesospy_mqtt/lifesospy_mqtt.service /usr/lib/systemd/system/lifesos
 # Enable the service
 RUN systemctl enable lifesospy_mqtt.service
 
+# Install service monitor
+COPY ./src/logmon/logmon.sh /usr/local/bin/logmon.sh
+RUN chmod +x /usr/local/bin/logmon.sh
+COPY ./src/logmon/logmon-lifesospy_mqtt.service /usr/lib/systemd/system/logmon-lifesospy_mqtt.service
+RUN systemctl enable logmon-lifesospy_mqtt.service
+
 #CMD ["lifesospy_mqtt", "-l", "-p", "--configfile", "/lifesospy_mqtt/config.yaml", "--logfile", "/lifesospy_mqtt/log", "--pidfile", "/lifesospy_mqtt/pid"]
 
 ### Kick it off

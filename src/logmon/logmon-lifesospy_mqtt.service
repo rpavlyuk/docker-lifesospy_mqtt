@@ -1,0 +1,13 @@
+[Unit]
+Description=Log Monitor for lifesospy_mqtt service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+RestartSec=5s
+Type=simple
+NotifyAccess=all
+ExecStart=/usr/local/bin/logmon.sh "/lifesospy_mqtt/log" "\[asyncio\] socket.send() raised exception" "systemctl restart lifesospy_mqtt.service"
+
+[Install]
+WantedBy=multi-user.target
