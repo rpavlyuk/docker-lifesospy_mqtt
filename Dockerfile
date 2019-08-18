@@ -29,7 +29,8 @@ RUN pip3 install --upgrade pip
 RUN pip3 install lifesospy_mqtt
 
 # Copy configs
-COPY ./src/ /
+COPY ./src/lifesospy_mqtt /lifesospy_mqtt
+RUN ls -l /lifesospy_mqtt/
 
 # Install the service
 COPY ./src/lifesospy_mqtt/lifesospy_mqtt.service /usr/lib/systemd/system/lifesospy_mqtt.service
@@ -42,6 +43,12 @@ COPY ./src/logmon/logmon.sh /usr/local/bin/logmon.sh
 RUN chmod +x /usr/local/bin/logmon.sh
 COPY ./src/logmon/logmon-lifesospy_mqtt.service /usr/lib/systemd/system/logmon-lifesospy_mqtt.service
 RUN systemctl enable logmon-lifesospy_mqtt.service
+
+# Install cron file to restart log monitor because of log file rotation
+RUN yum install -y cronie
+RUN systemctl enable crond.service
+COPY ./src/cron.d/* /etc/cron.d/
+RUN chmod 600 /etc/cron.d/restart-logmon-lifesospy_mqtt
 
 #CMD ["lifesospy_mqtt", "-l", "-p", "--configfile", "/lifesospy_mqtt/config.yaml", "--logfile", "/lifesospy_mqtt/log", "--pidfile", "/lifesospy_mqtt/pid"]
 
