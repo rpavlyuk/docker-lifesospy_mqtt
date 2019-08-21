@@ -9,6 +9,8 @@ RUN yum update -y
 
 RUN yum install -y less file mc vim-enhanced telnet net-tools which bash-completion openssh-clients
 
+VOLUME ["/var/log/journal"]
+
 ### Let's enable systemd on the container
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
