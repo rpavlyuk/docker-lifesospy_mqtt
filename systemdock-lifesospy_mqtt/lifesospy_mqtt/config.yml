@@ -9,8 +9,14 @@ volumes:
         /etc/localtime:
                 bind: /etc/localtime
                 mode: ro
+        /var/log/lifesospy_mqtt/journal:
+                bind: /var/log/journal
+                mode: rw
 privileged: false
 tty: true
 environment: {}
 network_mode: bridge
 working_dir: /root
+command:
+        host:
+                post: docker exec lifesospy_mqtt journalctl --flush

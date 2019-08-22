@@ -24,10 +24,13 @@ install:
 	$(LN) $(SYSCONFDIR)/systemdock/containers.d/$(_PROFILE)/$(_MODULE).service $(SYSTEMD_DIR)/$(_MODULE).service
 	
 	$(MKDIR) $(DATADIR)/$(_PROFILE)
+	$(MKDIR) $(LOGDIR)/$(_PROFILE)/journal
 
 uninstall:
 	$(RM) $(SYSTEMD_DIR)/$(_MODULE).service
 	$(RM) $(SYSCONFDIR)/systemdock/containers.d/$(_PROFILE)
+
+reinstall: uninstall install
 
 rpm:
 	$(TAR) \
