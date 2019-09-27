@@ -1,1 +1,1 @@
-05 0 * * * root /usr/bin/systemctl restart logmon-lifesospy_mqtt.service >/lifesospy_mqtt/logmon-reload.log 2>&1
+05 0/4 * * * root /usr/bin/systemctl restart logmon-lifesospy_mqtt.service >/lifesospy_mqtt/logmon-reload.log 2>&1
